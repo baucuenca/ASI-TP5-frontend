@@ -1,3 +1,5 @@
+// Página para URL inexistente
+
 function NotFound() {
   return (
     <>
