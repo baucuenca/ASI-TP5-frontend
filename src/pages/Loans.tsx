@@ -1,6 +1,7 @@
 // Pagina de administración de préstamos
 
 import MenuCard from "../components/MenuCard";
+import GoBackButton from "../components/GoBackButton";
 
 function Loans() {
   return (
