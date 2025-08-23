@@ -1,7 +1,7 @@
 // Rutas asociadas a libros
 
 import { Route } from "react-router-dom";
-import Books from "../pages/Books";
+import Books from "../pages/books/Books";
 
 const booksRoutes = (
   <>

@@ -1,7 +1,7 @@
 // Pagina de administración de miembros
 
-import MenuCard from "../components/MenuCard";
-import GoBackButton from "../components/GoBackButton";
+import MenuCard from "../../components/MenuCard";
+import GoBackButton from "../../components/GoBackButton";
 
 function Members() {
   return (

@@ -1,7 +1,7 @@
 // Rutas asociadas a miembros
 
 import { Route } from "react-router-dom";
-import Members from "../pages/Members";
+import Members from "../pages/members/Members";
 
 const membersRoutes = (
   <>

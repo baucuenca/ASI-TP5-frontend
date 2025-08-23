@@ -1,12 +1,12 @@
 // Rutas asociadas a miembros
 
 import { Route } from "react-router-dom";
-import Members from "../pages/Members";
+import Loans from "../pages/loans/Loans";
 
-const membersRoutes = (
+const loansRoutes = (
   <>
-    <Route path="/members" element={<Members />} />
+    <Route path="/loans" element={<Loans />} />
   </>
 );
 
-export default membersRoutes;
+export default loansRoutes;

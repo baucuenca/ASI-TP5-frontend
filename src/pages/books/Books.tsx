@@ -1,7 +1,7 @@
 // Pagina de administración de libros
 
-import MenuCard from "../components/MenuCard";
-import GoBackButton from "../components/GoBackButton";
+import MenuCard from "../../components/MenuCard";
+import GoBackButton from "../../components/GoBackButton";
 
 function Books() {
   return (
