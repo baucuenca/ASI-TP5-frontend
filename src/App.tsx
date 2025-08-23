@@ -1,9 +1,10 @@
 // Rutas de la aplicacion
 
+import "./index.css";
 import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import NotFound from "./pages/NotFound";
-import "./index.css";
+import Loans from "./pages/Loans";
 
 function App() {
   return (
@@ -11,6 +12,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="*" element={<NotFound />} />
+        <Route path="/loans/*" element={<Loans />} />
       </Routes>
     </>
   );
