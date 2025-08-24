@@ -14,7 +14,7 @@ function Books() {
 
         {/* Menu */}
         <div className="space-y-4">
-          <MenuCard to="/books/new" title="Nuevo Libro" />
+          <MenuCard to="/books/create" title="Nuevo Libro" />
           <MenuCard to="/books/manage" title="Gestionar Libros" />
           <GoBackButton />
         </div>
