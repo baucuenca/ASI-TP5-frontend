@@ -20,7 +20,7 @@ function BooksCreate() {
     author: "",
     published_year: new Date().getFullYear(),
     isbn: "",
-    stock: 0,
+    stock: 1, // Stock por defecto
   });
   const [loading, setLoading] = useState(false);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
@@ -28,11 +28,11 @@ function BooksCreate() {
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    // Seteo de valores, se diferencia entre numbers y strings
+    // Seteo de valores a la instancia de BookCreate, se diferencia entre numbers y strings
     if (name === "published_year" || name === "stock") {
       setBookCreate((prev) => ({
         ...prev,
-        [name]: value === "" ? null : Number(value),
+        [name]: value === "" ? "" : Number(value),
       }));
     } else {
       setBookCreate((prev) => ({ ...prev, [name]: value }));
@@ -50,11 +50,13 @@ function BooksCreate() {
       return;
     }
     if (!bookCreate.published_year || Number.isNaN(bookCreate.published_year)) {
-      setErrorMsg("El año de publicación debe ser un número.");
+      setErrorMsg(
+        "El año de publicacion no puede estar vacio y debe ser un numero."
+      );
       return;
     }
-    if (bookCreate.stock === undefined || Number.isNaN(bookCreate.stock)) {
-      setErrorMsg("El stock debe ser un número.");
+    if (!bookCreate.stock || Number.isNaN(bookCreate.stock)) {
+      setErrorMsg("El stock no puede estar vacio y debe ser un numero.");
       return;
     }
 
@@ -63,8 +65,6 @@ function BooksCreate() {
       setLoading(true);
       await libraryAPI("post", "/books", bookCreate);
       setSuccessMsg("Libro creado correctamente.");
-      // Redirigir al menú de Libros luego de un pequeño delay
-      setTimeout(() => navigate("/books"), 800);
     } catch (err: any) {
       const apiError =
         err?.response?.data?.detail ||
@@ -104,7 +104,6 @@ function BooksCreate() {
               onChange={onChange}
               className="w-full rounded-md border border-slate-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"
               placeholder="Ej: El Principito"
-              required
             />
           </div>
 
@@ -116,7 +115,6 @@ function BooksCreate() {
               onChange={onChange}
               className="w-full rounded-md border border-slate-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"
               placeholder="Ej: Antoine de Saint-Exupéry"
-              required
             />
           </div>
 
@@ -131,7 +129,6 @@ function BooksCreate() {
               onChange={onChange}
               className="w-full rounded-md border border-slate-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"
               placeholder="Ej: 1943"
-              required
             />
           </div>
 
@@ -143,7 +140,6 @@ function BooksCreate() {
               onChange={onChange}
               className="w-full rounded-md border border-slate-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"
               placeholder="Ej: 978-..."
-              required
             />
           </div>
 
@@ -156,8 +152,6 @@ function BooksCreate() {
               onChange={onChange}
               className="w-full rounded-md border border-slate-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"
               placeholder="Ej: 10"
-              min={0}
-              required
             />
           </div>
 
