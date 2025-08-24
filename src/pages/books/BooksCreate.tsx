@@ -1,7 +1,6 @@
 // Pagina para dar de alta un libro a traves de un formulario
 
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { libraryAPI } from "../../services/libraryAPI";
 import GoBackButton from "../../components/GoBackButton";
 
@@ -14,7 +13,6 @@ type BookCreate = {
 };
 
 function BooksCreate() {
-  const navigate = useNavigate();
   const [bookCreate, setBookCreate] = useState<BookCreate>({
     title: "",
     author: "",
