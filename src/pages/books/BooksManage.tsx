@@ -40,10 +40,18 @@ function BooksManage() {
   }, []);
 
   const filtered = useMemo(() => {
-    const q = search.trim().toLowerCase();
+    // Normaliza la cadena de búsqueda para que no tenga en cuenta acentos ni mayúsculas
+    const normalize = (s: string) =>
+      s
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .toLowerCase();
+
+    const q = normalize(search.trim());
+
     if (!q) return books;
-    return books.filter((b) => b.title.toLowerCase().includes(q));
-  }, [books, search]);
+    return books.filter((b) => normalize(b.title).includes(q));
+  }, [books, search]); // Dependencias que hacen que se vuelva a calcular el filtro
 
   return (
     <main className="min-h-screen bg-slate-50 flex items-center justify-center p-6">
