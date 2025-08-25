@@ -1,9 +1,9 @@
 // Pagina para gestionar los libros
 
 import { useEffect, useMemo, useState } from "react";
-import { Link } from "react-router-dom";
 import { libraryAPI } from "../../services/libraryAPI";
 import GoBackButton from "../../components/GoBackButton";
+import EditButton from "../../components/EditButton";
 
 type Book = {
   id: number;
@@ -94,13 +94,7 @@ function BooksManage() {
                         <p className="text-sm text-slate-500">por {b.author}</p>
                       </div>
 
-                      <Link
-                        to={`/books/update/${b.id}`}
-                        className="opacity-0 group-hover:opacity-100 transition px-3 py-1.5 rounded-md bg-blue-600 text-white text-sm hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                        aria-label={`Editar ${b.title}`}
-                      >
-                        Editar
-                      </Link>
+                      <EditButton to={`/books/update/${b.id}`} />
                     </li>
                   ))
                 )}
