@@ -1,4 +1,4 @@
-// Listado y gestión de libros
+// Pagina para gestionar los libros
 
 import { useEffect, useMemo, useState } from "react";
 import { Link } from "react-router-dom";
@@ -51,7 +51,7 @@ function BooksManage() {
 
     if (!q) return books;
     return books.filter((b) => normalize(b.title).includes(q));
-  }, [books, search]); // Dependencias que hacen que se vuelva a calcular el filtro
+  }, [books, search]); // Dependencias que, si cambian, hacen que se vuelva a calcular el filtro
 
   return (
     <main className="min-h-screen bg-slate-50 flex items-center justify-center p-6">
