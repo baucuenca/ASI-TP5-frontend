@@ -4,6 +4,8 @@ import { useEffect, useMemo, useState } from "react";
 import { libraryAPI } from "../../services/libraryAPI";
 import GoBackButton from "../../components/GoBackButton";
 import EditButton from "../../components/EditButton";
+import DeleteButton from "../../components/DeleteButton";
+import ReadButton from "../../components/ReadButton";
 
 type Book = {
   id: number;
@@ -20,6 +22,10 @@ function BooksManage() {
   const [loading, setLoading] = useState(true);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
   const [search, setSearch] = useState("");
+
+  // Estado del modal de "Ver"
+  const [selected, setSelected] = useState<Book | null>(null);
+  const closeModal = () => setSelected(null);
 
   useEffect(() => {
     const load = async () => {
@@ -94,7 +100,8 @@ function BooksManage() {
                         <p className="text-sm text-slate-500">por {b.author}</p>
                       </div>
 
-                      <EditButton to={`/books/update/${b.id}`} />
+                      {/* Botón "Ver" */}
+                      <ReadButton onClick={() => setSelected(b)} />
                     </li>
                   ))
                 )}
@@ -105,6 +112,88 @@ function BooksManage() {
 
         <GoBackButton />
       </div>
+
+      {/* Modal de "Ver" */}
+      {selected && (
+        <div
+          className="fixed inset-0 z-50 flex items-center justify-center"
+          aria-modal="true"
+          role="dialog"
+        >
+          {/* Backdrop */}
+          <div
+            className="absolute inset-0 bg-black/40"
+            onClick={closeModal}
+          ></div>
+
+          {/* Contenido */}
+          <div className="relative z-10 w-full max-w-lg mx-4 rounded-lg bg-white shadow-lg border border-slate-200">
+            <div className="flex items-center justify-between px-5 py-3 border-b border-slate-200">
+              <h2 className="text-xl font-semibold text-slate-900">
+                Detalle del Libro
+              </h2>
+              <button
+                type="button"
+                onClick={closeModal}
+                className="text-2xl font-bold text-slate-500 hover:text-slate-700"
+                aria-label="Cerrar"
+                title="Cerrar"
+              >
+                ×
+              </button>
+            </div>
+
+            <div className="px-5 py-4 space-y-2">
+              <p>
+                <span className="font-medium text-slate-700">Título:</span>{" "}
+                {selected.title}
+              </p>
+              <p>
+                <span className="font-medium text-slate-700">Autor:</span>{" "}
+                {selected.author}
+              </p>
+              <p>
+                <span className="font-medium text-slate-700">ISBN:</span>{" "}
+                {selected.isbn}
+              </p>
+              <p>
+                <span className="font-medium text-slate-700">
+                  Año de publicación:
+                </span>{" "}
+                {selected.published_year}
+              </p>
+              <p>
+                <span className="font-medium text-slate-700">Stock:</span>{" "}
+                {selected.stock}
+              </p>
+              <p>
+                <span className="font-medium text-slate-700">ID:</span>{" "}
+                {selected.id}
+              </p>
+              <p>
+                <span className="font-medium text-slate-700">Activo:</span>{" "}
+                {selected.is_active ? "Sí" : "No"}
+              </p>
+            </div>
+
+            <div className="flex items-center justify-end gap-3 px-5 py-4 border-t border-slate-200">
+              <EditButton to={`/books/update/${selected.id}`} />
+              <DeleteButton
+                onClick={() => {
+                  /* Falta implementacion */
+                }}
+              />
+              <button
+                type="button"
+                onClick={closeModal}
+                className="ml-auto px-3 py-1.5 rounded-md border border-slate-300 text-slate-700 text-sm hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-slate-300"
+              >
+                Cerrar
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </main>
   );
 }
