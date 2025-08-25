@@ -3,7 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { libraryAPI } from "../../services/libraryAPI";
 import GoBackButton from "../../components/GoBackButton";
-import EditButton from "../../components/EditButton";
+import UpdateButton from "../../components/UpdateButton";
 import DeleteButton from "../../components/DeleteButton";
 import ReadButton from "../../components/ReadButton";
 
@@ -177,7 +177,7 @@ function BooksManage() {
             </div>
 
             <div className="flex items-center justify-end gap-3 px-5 py-4 border-t border-slate-200">
-              <EditButton to={`/books/update/${selected.id}`} />
+              <UpdateButton to={`/books/update/${selected.id}`} />
               <DeleteButton
                 onClick={() => {
                   /* Falta implementacion */
