@@ -185,14 +185,14 @@ function BooksManage() {
                 <span className="font-medium text-slate-700">Stock:</span>{" "}
                 {selected.stock}
               </p>
-              <p>
+              {/* <p>
                 <span className="font-medium text-slate-700">ID:</span>{" "}
                 {selected.id}
               </p>
               <p>
                 <span className="font-medium text-slate-700">Activo:</span>{" "}
                 {selected.is_active ? "Sí" : "No"}
-              </p>
+              </p> */}
             </div>
 
             <div className="flex items-center justify-end gap-3 px-5 py-4 border-t border-slate-200">
