@@ -14,7 +14,7 @@ function Members() {
 
         {/* Menu */}
         <div className="space-y-4">
-          <MenuCard to="/members/new" title="Nuevo Miembro" />
+          <MenuCard to="/members/create" title="Nuevo Miembro" />
           <MenuCard to="/members/manage" title="Gestionar Miembros" />
           <GoBackButton />
         </div>
