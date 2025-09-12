@@ -54,6 +54,7 @@ function LoansUpdate() {
       if (!id) {
         setErrorMsg("ID inexistente.");
         setLoading(false);
+        setListsLoading(false);
         return;
       }
       try {
@@ -64,8 +65,6 @@ function LoansUpdate() {
         ]);
 
         setOriginal(loan);
-        // Pre-cargar campos (si backend no da IDs para book/member no se puede cambiar)
-        // Quedan vacíos hasta seleccionar si no se proveen IDs en la API.
         setLoanDate(loan.loan_date.slice(0, 10));
         setReturnDate(loan.return_date.slice(0, 10));
         setReturned(loan.returned);
@@ -77,6 +76,11 @@ function LoansUpdate() {
           err?.response?.data?.detail ||
             err?.message ||
             "Error al cargar el préstamo."
+        );
+        setListsError(
+          err?.response?.data?.detail ||
+            err?.message ||
+            "Error al cargar listas de libros/miembros."
         );
       } finally {
         setLoading(false);
