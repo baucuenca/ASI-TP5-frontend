@@ -3,7 +3,10 @@
 import axios from "axios";
 import type { AxiosRequestConfig } from "axios"; // Se debe importar como un "tipo" de datos
 
-const BASE_URL = "http://127.0.0.1:8000";
+const SERVER_PUBLIC_IP = import.meta.env.VITE_SERVER_PUBLIC_IP;
+const BACKEND_PORT = import.meta.env.VITE_BACKEND_PORT;
+
+const BASE_URL = `http://${SERVER_PUBLIC_IP}:${BACKEND_PORT}`;
 
 type HttpMethod = "get" | "post" | "patch" | "delete";
 
